@@ -3,20 +3,17 @@
 #define MAX 100
 using namespace std;
 
-void NhapMang(int a[], int n)
+int NhapMang(int a[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
 		cout << "\nNhap phan tu thu " << i << ": ";
 		cin >> a[i];
+		if (a[i] == 0) {
+			cout << "\nKet thuc mang ";
+			return 0;
+		}
 	}
-}
-
-void MangNgauNhien(int a[], int n)
-{
-	srand((unsigned)time(NULL));
-	for (int i = 0; i < n; i++)
-		a[i] = rand() % 100 - rand() % 100;
 }
 
 void XuatMang(int a[], int n)
@@ -44,16 +41,13 @@ void XepTang(int a[], int n)
 void main()
 {
 	int a[MAX], i, n;
-
 	cout << "Nhap so luong phan tu trong mang: "; 
 	cin >> n;
-	MangNgauNhien(a, n);
-	cout << "Mang luc dau co dang: " << endl;
+	NhapMang(a, n);
+	cout << "\n\nMang luc dau co dang: " << endl;
 	XuatMang(a,n);
-	cout << endl << "Mang sau khi da xep tang: " << endl;
-	//NhapMang(a, n);
+	cout << "\nMang sau khi da xep tang: " << endl;
 	XepTang(a, n);
 	XuatMang(a, n);
-	
 }
 
