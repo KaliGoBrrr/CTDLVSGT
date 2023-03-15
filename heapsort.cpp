@@ -3,11 +3,6 @@
 using namespace std;
 
 
-void swap(int a, int b) {
-    int tam = a;
-    a = b;
-    b = tam;
-}
 
 // Thuat toan sap xep vun dong
 // Hàm vun đống cho một đỉnh
@@ -23,7 +18,11 @@ void heapify(int arr[], int n, int i) {  // mảng arr, n - số phần tử, i 
         max = r;
     }
     if (max != i) {      // Nếu max != i, tức là cha không phải lớn nhất
-        swap(arr[i], arr[max]);   // Đổi chỗ cho phần tử lớn nhất làm cha
+
+        // Đổi chỗ cho phần tử lớn nhất làm cha
+        int tam = arr[i];
+        arr[i] = arr[max];
+        arr[max] = tam;
         heapify(arr, n, max);    // Đệ quy vun các node phía dưới
     }
 
@@ -40,7 +39,10 @@ void heapSort(int arr[], int n) {
     // Vòng lặp để thực hiện vun đống và lấy phần tử
     for (int j = n - 1; j > 0; j--) {   // chạy hết j == 1 sẽ dừng
         // mỗi lần j - 1, tương đương với k xét phần tử cuối 
-        swap(arr[0], arr[j]);  // đổi chỗ phần tử lớn nhất
+          // đổi chỗ phần tử lớn nhất
+        int temp = arr[0];
+        arr[0] = arr[j];
+        arr[j] = temp;
         heapify(arr, j, 0);    // vun lại đống, 
     }
 }
@@ -54,7 +56,7 @@ void nhapmang(int arr[], int n)
         cin >> arr[i];
     }
 }
-  
+
 
 void printArray(int arr[], int n)
 {
@@ -63,7 +65,7 @@ void printArray(int arr[], int n)
     cout << "\n";
 }
 
- 
+
 int main()
 {
     int arr[MAX], n;
@@ -76,4 +78,3 @@ int main()
     heapSort(arr, n);
     printArray(arr, n);
 }
-
